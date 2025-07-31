@@ -1,0 +1,54 @@
+{
+  "$schema": "https://railway.app/railway.schema.json",
+  "build": {
+    "builder": "NIXPACKS"
+  },
+  "deploy": {
+    "numReplicas": 1,
+    "healthcheckPath": "/health",
+    "restartPolicyType": "ON_FAILURE",
+    "restartPolicyMaxRetries": 10
+  },
+  "services": [
+    {
+      "name": "backend",
+      "source": {
+        "directory": "backend"
+      },
+      "build": {
+        "buildCommand": "pip install -r requirements.txt"
+      },
+      "deploy": {
+        "startCommand": "uvicorn app.main:app --host 0.0.0.0 --port $PORT",
+        "healthcheckPath": "/health"
+      },
+      "volumes": [
+        {
+          "mount": "/app/media",
+          "name": "media-storage"
+        },
+        {
+          "mount": "/app/sessions",
+          "name": "sessions-storage"
+        },
+        {
+          "mount": "/app/database",
+          "name": "database-storage"
+        }
+      ]
+    },
+    {
+      "name": "frontend",
+      "source": {
+        "directory": "frontend"
+      },
+      "build": {
+        "buildCommand": "npm install && npm run build"
+      },
+      "deploy": {
+        "startCommand": "npm start",
+        "healthcheckPath": "/"
+      }
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+backend/venv/
+.venv
+.env
+ENV/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+database.db*
+
+# Logs
+*.log
+logs/
+backend.log
+frontend.log
+backend_new.log
+nohup.out
+
+# Media files
+backend/media/*
+!backend/media/.gitkeep
+backend/sessions/*
+!backend/sessions/.gitkeep
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.next/
+frontend/out/
+frontend/build/
+frontend/.env.local
+frontend/.env.*.local
+frontend/*.tsbuildinfo
+frontend/next-env.d.ts
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Documentation (Instaloader docs)
+/docs/
+
+# Test files
+test_*.py
+*.test.py
+backend/test_login.py
+backend/create_tables.py
+
+# Backup files
+*.backup
+*.bak
+
+# Railway
+.railway/
+
+# Temporary files
+tmp/
+temp/
+*.tmp

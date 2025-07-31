@@ -1,0 +1,11 @@
+fastapi==0.115.5
+uvicorn[standard]==0.32.1
+sqlmodel==0.0.22
+instaloader==4.13.1
+apscheduler==3.10.4
+requests==2.32.3
+python-multipart==0.0.16
+websockets==14.1
+aiofiles==24.1.0
+python-dotenv==1.0.1
+passlib[bcrypt]==1.7.4
