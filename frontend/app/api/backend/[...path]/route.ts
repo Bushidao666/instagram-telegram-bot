@@ -2,11 +2,16 @@ import { NextRequest } from 'next/server';
 
 const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:8000';
 
+type RouteContext = {
+  params: Promise<{ path: string[] }>;
+};
+
 export async function GET(
   request: NextRequest,
-  { params }: { params: { path: string[] } }
+  context: RouteContext
 ) {
-  const path = (await params).path.join('/');
+  const params = await context.params;
+  const path = params.path.join('/');
   const url = `${BACKEND_URL}/api/${path}${request.nextUrl.search}`;
 
   try {
@@ -28,9 +33,10 @@ export async function GET(
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { path: string[] } }
+  context: RouteContext
 ) {
-  const path = (await params).path.join('/');
+  const params = await context.params;
+  const path = params.path.join('/');
   const url = `${BACKEND_URL}/api/${path}`;
   let body = {};
   try {
@@ -60,9 +66,10 @@ export async function POST(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { path: string[] } }
+  context: RouteContext
 ) {
-  const path = (await params).path.join('/');
+  const params = await context.params;
+  const path = params.path.join('/');
   const url = `${BACKEND_URL}/api/${path}`;
   const body = await request.json();
 
@@ -87,9 +94,10 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { path: string[] } }
+  context: RouteContext
 ) {
-  const path = (await params).path.join('/');
+  const params = await context.params;
+  const path = params.path.join('/');
   const url = `${BACKEND_URL}/api/${path}`;
 
   try {
